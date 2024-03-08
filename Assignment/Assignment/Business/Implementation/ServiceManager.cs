@@ -13,8 +13,17 @@ namespace Assignment.Business.Impl
 
         public async Task<List<MasterData>> GetCategories()
         {
-            var lst = await _serviceRepository.GetAsync<List<Category>>("api/json/v1/1/categories.php");
-            return new List<MasterData>();
+            var categories = await _serviceRepository.GetAsync<Categories>("api/json/v1/1/categories.php");
+
+            var masterDataList = new List<MasterData>();
+            foreach(var cat in categories.categories)
+            {
+                var md = new MasterData();
+                md.Id = cat.idCategory;
+                md.Name = cat.strCategory;
+                masterDataList.Add(md);
+            }
+            return masterDataList;
         }
     }
 }

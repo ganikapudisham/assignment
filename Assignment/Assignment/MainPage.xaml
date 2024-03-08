@@ -4,10 +4,9 @@
              x:Class="Assignment.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-        </VerticalStackLayout>
+        <Picker Title="Select a category"
+        ItemsSource="{Binding Categories}"
+        ItemDisplayBinding="{Binding Name}" />
     </ScrollView>
 
 </ContentPage>
