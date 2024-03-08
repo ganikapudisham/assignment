@@ -2,6 +2,7 @@
 using Assignment.Business.Impl;
 using Assignment.Data;
 using Assignment.Data.Impl;
+using CommunityToolkit.Maui;
 using Matri.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -14,6 +15,7 @@ namespace Assignment
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

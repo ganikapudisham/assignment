@@ -25,5 +25,12 @@ namespace Assignment.Business.Impl
             }
             return masterDataList;
         }
+
+        public async Task<List<Recipe>> GetRecipes(string categoryName)
+        {
+            var recipes = await _serviceRepository.GetAsync<Recipes>(string.Format("api/json/v1/1/filter.php?c={0}", categoryName));
+            return recipes.recipes;
+
+        }
     }
 }
