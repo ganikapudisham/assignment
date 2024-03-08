@@ -6,6 +6,6 @@ namespace Assignment.Business
     {
         Task<List<MasterData>> GetCategories();
 
-        Task<List<Recipe>> GetRecipes(string categoryName);
+        Task<List<Meal>> GetMeals(string categoryName);
     }
 }

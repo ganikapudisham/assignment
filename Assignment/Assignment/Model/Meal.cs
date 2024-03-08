@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Assignment.Model
 {
-    public class Recipes
+    public class Meal
     {
-        public Recipes()
-        {
-            recipes = new List<Recipe>();
-        }
-        public List<Recipe> recipes { get; set; }
+        public string strMeal { get; set; }
+        public string strMealThumb { get; set; }
+        public string idMeal { get; set; }
     }
 }

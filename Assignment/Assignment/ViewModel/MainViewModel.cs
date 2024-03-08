@@ -52,8 +52,8 @@ namespace Matri.ViewModel
 
                 int index = Categories.ToList().FindIndex(a => a.Id == item.SelectedCategory.Id);
                 var selCat = Categories[index];
-
-                var recipes = await _serviceManager.GetRecipes(selCat.Name);
+                var catname = "Seafood";
+                var recipes = await _serviceManager.GetMeals(catname);
             }
         }
     }

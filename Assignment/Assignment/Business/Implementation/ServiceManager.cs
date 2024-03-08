@@ -26,10 +26,10 @@ namespace Assignment.Business.Impl
             return masterDataList;
         }
 
-        public async Task<List<Recipe>> GetRecipes(string categoryName)
+        public async Task<List<Meal>> GetMeals(string categoryName)
         {
-            var recipes = await _serviceRepository.GetAsync<Recipes>(string.Format("api/json/v1/1/filter.php?c={0}", categoryName));
-            return recipes.recipes;
+            var meals = await _serviceRepository.GetAsync<Meals>(string.Format("api/json/v1/1/filter.php?c={0}", categoryName));
+            return meals.meals;
 
         }
     }
