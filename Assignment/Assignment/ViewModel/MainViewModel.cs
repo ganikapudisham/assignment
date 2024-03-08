@@ -16,7 +16,7 @@ namespace Matri.ViewModel
             _serviceManager = serviceManager;
             Categories = new ObservableRangeCollection<MasterData>();
             Meals = new ObservableRangeCollection<Meal>();
-            Task.Run(() => this.GetCategories());
+            GetCategories();
         }
 
         private ObservableRangeCollection<MasterData> categories;
@@ -59,7 +59,6 @@ namespace Matri.ViewModel
             }
             catch (Exception ex)
             {
-                IsBusy = false;
             }
         }
 
@@ -75,7 +74,10 @@ namespace Matri.ViewModel
                 var selCat = Categories[index];
                 //var meals = await _serviceManager.GetMeals("Seafood");
                 var recipes = await _serviceManager.GetMeals(selCat.Name);
-
+                if(recipes.Count == 0)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Alert", "No Records", "Ok");
+                }
                 Meals.AddRange(meals);
             }
             IsBusy = false;

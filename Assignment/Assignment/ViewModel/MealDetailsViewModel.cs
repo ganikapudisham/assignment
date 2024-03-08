@@ -20,13 +20,13 @@ namespace Matri.ViewModel
         public bool isBusy;
 
         [ObservableProperty]
-        public string meal;
+        public string strMeal;
 
         [ObservableProperty]
-        public string mealThumb;
+        public string strMealThumb;
 
         [ObservableProperty]
-        public string instructions;
+        public string strInstructions;
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -41,9 +41,9 @@ namespace Matri.ViewModel
 
             var MealDetails = mealDetails.Where(md => md.idMeal == mealId).FirstOrDefault();
 
-            Meal = MealDetails.strMeal;
-            MealThumb = MealDetails.strMealThumb;
-            Instructions = MealDetails.strInstructions;
+            StrMeal = MealDetails.strMeal;
+            StrMealThumb = MealDetails.strMealThumb;
+            StrInstructions = MealDetails.strInstructions;
             IsBusy = false;
 
         }

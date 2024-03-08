@@ -7,8 +7,8 @@
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
 
 
-        <Label Text="{Binding Meal}"></Label>
-        <Image Source="{Binding MealThumb}" Aspect="AspectFit"/>
-        <Label Text="{Binding Instructions}"></Label>
+        <Label Text="{Binding StrMeal}"></Label>
+        <Image Source="{Binding StrMealThumb}" Aspect="AspectFit"/>
+        <Label Text="{Binding StrInstructions}"></Label>
     </VerticalStackLayout>
 </ContentPage>
