@@ -7,5 +7,7 @@ namespace Assignment.Business
         Task<List<MasterData>> GetCategories();
 
         Task<List<Meal>> GetMeals(string categoryName);
+
+        Task<List<Meal>> GetMealDetails(string mealId);
     }
 }

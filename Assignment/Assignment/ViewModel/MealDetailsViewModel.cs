@@ -8,7 +8,7 @@ using MvvmHelpers;
 
 namespace Matri.ViewModel
 {
-    public partial class MealDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
+    public partial class MealDetailsViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject, IQueryAttributable
     {
         IServiceManager _serviceManager;
         public MealDetailsViewModel(IServiceManager serviceManager)
@@ -16,5 +16,36 @@ namespace Matri.ViewModel
             _serviceManager = serviceManager;
         }
 
+        [ObservableProperty]
+        public bool isBusy;
+
+        [ObservableProperty]
+        public string meal;
+
+        [ObservableProperty]
+        public string mealThumb;
+
+        [ObservableProperty]
+        public string instructions;
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            var mealId = query["mealDetailsInput"] as string;
+            Task.Run(() => this.GetMealDetails(mealId));
+        }
+
+        public async Task GetMealDetails(string mealId)
+        {
+            IsBusy = true;
+            var mealDetails = await _serviceManager.GetMealDetails(mealId);
+
+            var MealDetails = mealDetails.Where(md => md.idMeal == mealId).FirstOrDefault();
+
+            Meal = MealDetails.strMeal;
+            MealThumb = MealDetails.strMealThumb;
+            Instructions = MealDetails.strInstructions;
+            IsBusy = false;
+
+        }
     }
 }

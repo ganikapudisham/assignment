@@ -31,5 +31,11 @@ namespace Assignment.Business.Impl
             var meals = await _serviceRepository.GetAsync<Meals>(string.Format("api/json/v1/1/filter.php?c={0}", categoryName));
             return meals.meals;
         }
+
+        public async Task<List<Meal>> GetMealDetails(string mealId)
+        {
+            var meals = await _serviceRepository.GetAsync<Meals>(string.Format("api/json/v1/1/lookup.php?i={0}", mealId));
+            return meals.meals;
+        }
     }
 }

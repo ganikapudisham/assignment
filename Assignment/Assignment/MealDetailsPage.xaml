@@ -4,9 +4,11 @@
              x:Class="Assignment.MealDetailsPage"
              Title="MealDetailsPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True"/>
+
+
+        <Label Text="{Binding strMeal}"></Label>
+        <Image Source="{Binding strMealThumb}" Aspect="AspectFit"/>
+        <Label Text="{Binding strInstructions}"></Label>
     </VerticalStackLayout>
 </ContentPage>

@@ -45,21 +45,28 @@ namespace Matri.ViewModel
         [ObservableProperty]
         public Meal selectedMeal;
 
+        [ObservableProperty]
+        public bool isBusy;
+
         public async Task GetCategories()
         {
+            IsBusy = true;
             try
             {
                 var dbCategories = await _serviceManager.GetCategories();
                 Categories.AddRange(dbCategories);
+                IsBusy = false;
             }
             catch (Exception ex)
             {
+                IsBusy = false;
             }
         }
 
         [RelayCommand]
-        private async Task SelectedCategoryPicked(Object obj)
+        public async Task SelectedCategoryPicked(Object obj)
         {
+            IsBusy = true;
             if (obj != null && obj is MainViewModel)
             {
                 var item = (MainViewModel)obj;
@@ -71,12 +78,13 @@ namespace Matri.ViewModel
 
                 Meals.AddRange(meals);
             }
+            IsBusy = false;
         }
 
         [RelayCommand]
         public async Task ViewMeal(Object obj)
         {
-
+            IsBusy = true;
             if (obj != null && obj is Meal)
             {
                 var item = (Meal)obj;
@@ -85,6 +93,7 @@ namespace Matri.ViewModel
 
                 await Shell.Current.GoToAsync("mealDetails", mealDetailsParams);
             }
+            IsBusy = false;
         }
     }
 }
