@@ -26,6 +26,12 @@ namespace Assignment
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
 
+            builder.Services.AddSingleton<MealDetailsPage>();
+            builder.Services.AddSingleton<MealDetailsViewModel>();
+
+            builder.Services.AddSingleton<AppShellViewModel>();
+            builder.Services.AddSingleton<AppShell>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
