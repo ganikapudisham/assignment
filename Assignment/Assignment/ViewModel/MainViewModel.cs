@@ -15,6 +15,7 @@ namespace Matri.ViewModel
         {
             _serviceManager = serviceManager;
             Categories = new ObservableRangeCollection<MasterData>();
+            Meals = new ObservableRangeCollection<Meal>();
             Task.Run(() => this.GetCategories());
         }
 
@@ -28,8 +29,21 @@ namespace Matri.ViewModel
             }
         }
 
+        private ObservableRangeCollection<Meal> meals;
+        public ObservableRangeCollection<Meal> Meals
+        {
+            get { return meals; }
+            set
+            {
+                meals = value;
+            }
+        }
+
         [ObservableProperty]
         public MasterData selectedCategory;
+
+        [ObservableProperty]
+        public Meal selectedMeal;
 
         public async Task GetCategories()
         {
@@ -52,8 +66,24 @@ namespace Matri.ViewModel
 
                 int index = Categories.ToList().FindIndex(a => a.Id == item.SelectedCategory.Id);
                 var selCat = Categories[index];
-                var catname = "Seafood";
-                var recipes = await _serviceManager.GetMeals(catname);
+                var meals = await _serviceManager.GetMeals("Seafood");
+                //var recipes = await _serviceManager.GetMeals(selCat.Name);
+
+                Meals.AddRange(meals);
+            }
+        }
+
+        [RelayCommand]
+        public async Task ViewMeal(Object obj)
+        {
+
+            if (obj != null && obj is Meal)
+            {
+                var item = (Meal)obj;
+
+                var mealDetailsParams = new Dictionary<string, object> { { "mealDetailsInput", item.idMeal} };
+
+                await Shell.Current.GoToAsync("mealDetails", mealDetailsParams);
             }
         }
     }
