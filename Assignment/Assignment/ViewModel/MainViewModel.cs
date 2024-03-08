@@ -78,7 +78,7 @@ namespace Matri.ViewModel
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Alert", "No Records", "Ok");
                 }
-                Meals.AddRange(meals);
+                Meals.AddRange(recipes);
             }
             IsBusy = false;
         }
